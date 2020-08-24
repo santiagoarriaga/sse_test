@@ -5,8 +5,28 @@
 	  <meta charset="utf-8">
 	
 	  <title>Prueba</title>
+	  
+	  <script>
+	    const source = new EventSource( "/messages" )
+
+	    source.onmessage = ({ data }) =>
+	    {
+	    	const message = JSON.stringify(data) 
+	    	console.log( message )
+
+	    	const list = document.getElementById( 'list' )
+	    	const element = document.createElement( 'li' )
+	    	
+	    	element.innerHTML = data
+	    	
+	    	list.appendChild( element )
+	    }
+	  </script>
 	</head>
 	<body>
 	  Hola Mundo
+
+	  <ul id="list">
+	  </ul>
 	</body>
 </html>
