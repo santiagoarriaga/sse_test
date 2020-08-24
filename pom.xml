@@ -46,4 +46,23 @@
       <version>${reactor-spring.version}</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>test.Application</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
