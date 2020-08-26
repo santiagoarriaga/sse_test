@@ -14,7 +14,6 @@
     <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     <start-class>test.Application</start-class>
     <reactor-spring.version>1.0.1.RELEASE</reactor-spring.version>
-    <reactor-kafka.version>1.0.1.RELEASE</reactor-kafka.version>
   </properties>
 
   <parent>
