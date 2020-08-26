@@ -36,10 +36,12 @@ public class KafkaMessageSource
     var options = _options.subscription( _topics );
 
     return KafkaReceiver.create( options ).receive()
-    .map( record -> new IncomingMessage(
-       record.receiverOffset().offset(),
-       record.key(),
-       record.value() )
+    .map( record -> new IncomingMessage
+       (
+         record.receiverOffset().offset(),
+         record.key(),
+         record.value()
+       )
     );
   }
 
