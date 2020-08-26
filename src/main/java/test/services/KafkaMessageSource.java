@@ -20,7 +20,7 @@ public class KafkaMessageSource
 
   public KafkaMessageSource( Map<String, Object> basicProperties, String topic )
   {
-    Map<String, Object> properties = new HashMap<>( basicProperties );
+    var properties = new HashMap<>( basicProperties );
 
     properties.put( KEY_DESERIALIZER_CLASS_CONFIG  , StringDeserializer.class );
     properties.put( VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class );
@@ -33,7 +33,7 @@ public class KafkaMessageSource
 
   public Flux<IncomingMessage> run()
   {
-    ReceiverOptions<String, String> options = _options.subscription( _topics );
+    var options = _options.subscription( _topics );
 
     return KafkaReceiver.create( options ).receive()
     .map( record -> new IncomingMessage(

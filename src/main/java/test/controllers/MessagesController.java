@@ -27,7 +27,7 @@ public class MessagesController
   @GetMapping
   public Flux<ServerSentEvent<String>> messages()
   {
-    KafkaMessageSource source =
+    var source =
       new KafkaMessageSource( Config.RECEIVER_PROPERTIES, Config.TOPIC );
 
     return source.run()
