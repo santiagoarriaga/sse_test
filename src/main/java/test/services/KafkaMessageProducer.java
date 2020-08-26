@@ -34,11 +34,11 @@ public class KafkaMessageProducer
 
   public void sendMessage( String text )
   {
-    long correlation = System.currentTimeMillis();
+    var correlation = System.currentTimeMillis();
     var record =
-      new ProducerRecord<String, String>( _topic, (String)null, text );
+      SenderRecord.create( _topic, null, null, (String)null, text, correlation );
 
-    var flux = Flux.just( SenderRecord.create(record, correlation) )
+    var flux = Flux.just(record )
     .doOnError( e -> e.printStackTrace() );
 
     _sender.send( flux )
