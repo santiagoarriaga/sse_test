@@ -17,9 +17,9 @@ public class KafkaMessageSource
   private final ReceiverOptions<String, String> _options;
   private final Collection<String> _topics;
 
-  public KafkaMessageSource(Map<String, Object> basicProperties, String topic)
+  public KafkaMessageSource( Map<String, Object> basicProperties, String topic )
   {
-    var properties = new HashMap<>(basicProperties);
+    var properties = new HashMap<>( basicProperties );
 
     properties.put( GROUP_ID_CONFIG                , "sample_group"           );
     properties.put( KEY_DESERIALIZER_CLASS_CONFIG  , StringDeserializer.class );
@@ -33,7 +33,7 @@ public class KafkaMessageSource
 
   public Flux<IncomingMessage> run()
   {
-    var options = _options.subscription(_topics);
+    var options = _options.subscription( _topics );
 
     return KafkaReceiver.create(options).receive()
     . map( record ->
