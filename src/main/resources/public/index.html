@@ -4,7 +4,7 @@
 	<head>
 	  <meta charset="utf-8">
 	
-	  <title>Prueba</title>
+	  <title>Test</title>
 	  
 	  <script>
 	    const source = new EventSource( "/messages" )
@@ -21,12 +21,34 @@
 	    	
 	    	list.appendChild( element )
 	    }
+	    
+	    const sendMessage = () =>
+	    {
+	    	const text = document.getElementById( 'text' ).value
+
+	    	const http = new XMLHttpRequest()
+	    	const url = `/send?text=${ encodeURIComponent(text) }`
+
+	    	http.open( "POST", url, true )
+
+	    	http.setRequestHeader( "Content-type", "application/x-www-form-urlencoded" )
+
+	    	http.onreadystatechange = () =>
+	    	  { console.log( `Request status: ${ http.status }` ) }
+
+	    	http.send()
+	    }
 	  </script>
 	</head>
 	<body>
-	  Hola Mundo
+	  Hello World
 
 	  <ul id="list">
 	  </ul>
+
+	  <form>
+	    <input id="text" name="text" value="Type sample message here">
+	    <button type="button" onClick="sendMessage()">Send</button>
+	  </form>
 	</body>
 </html>

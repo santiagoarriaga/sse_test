@@ -46,6 +46,11 @@
       <artifactId>reactor-spring</artifactId>
       <version>${reactor-spring.version}</version>
     </dependency>
+    
+    <dependency>
+      <groupId>io.projectreactor.kafka</groupId>
+      <artifactId>reactor-kafka</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
