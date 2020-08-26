@@ -1,18 +1,19 @@
 package test.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.web.bind.annotation.*;
 
 import reactor.core.publisher.Flux;
-
-import test.Config;
 import test.data.IncomingMessage;
-import test.services.KafkaMessageSource;
 
 @RestController
 @RequestMapping( "/messages" )
 public class MessagesController
 {
+
+  @Autowired
+  private Flux<IncomingMessage> _flux;  
 
   private ServerSentEvent<String> outputFor( IncomingMessage message )
   {
@@ -27,10 +28,7 @@ public class MessagesController
   @GetMapping
   public Flux<ServerSentEvent<String>> messages()
   {
-    var source =
-      new KafkaMessageSource( Config.CONSUMER_PROPERTIES, Config.TOPIC );
-
-    return source.run()
+    return Flux.from( _flux )
     . map( message -> outputFor(message) )
     ;
   }

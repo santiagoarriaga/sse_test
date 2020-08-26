@@ -5,7 +5,6 @@ import static org.apache.kafka.clients.producer.ProducerConfig.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import reactor.core.publisher.Flux;
