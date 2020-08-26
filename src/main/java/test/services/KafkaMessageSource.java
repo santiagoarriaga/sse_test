@@ -22,6 +22,7 @@ public class KafkaMessageSource
   {
     var properties = new HashMap<>( basicProperties );
 
+    properties.put( GROUP_ID_CONFIG                , "sample_group"           );
     properties.put( KEY_DESERIALIZER_CLASS_CONFIG  , StringDeserializer.class );
     properties.put( VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class );
     properties.put( AUTO_OFFSET_RESET_CONFIG       , "earliest"               );
