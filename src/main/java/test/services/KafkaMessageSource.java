@@ -26,8 +26,8 @@ public class KafkaMessageSource
     properties.put( VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class );
     properties.put( AUTO_OFFSET_RESET_CONFIG       , "earliest"               );
 
-    _options = ReceiverOptions.create(properties);
-    _topics = Collections.singleton(topic);
+    _options = ReceiverOptions.create( properties );
+    _topics = Collections.singleton( topic );
     ;
   }
 
