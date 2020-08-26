@@ -1,8 +1,8 @@
 package test.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import test.Config;
 import test.services.KafkaMessageProducer;
 
 @RestController
@@ -10,11 +10,11 @@ import test.services.KafkaMessageProducer;
 public class SendController
 {
 
-  private final KafkaMessageProducer _producer =
-    new KafkaMessageProducer( Config.PRODUCER_PROPERTIES, Config.TOPIC );
+  @Autowired
+  private KafkaMessageProducer _producer;
 
   @PostMapping
-  public void send( @RequestParam String text ) throws InterruptedException
+  public void send( @RequestParam String text )
   {
     System.out.println( "Sending message: " + text );
 
