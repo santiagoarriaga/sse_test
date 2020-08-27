@@ -38,6 +38,9 @@
 
 	    	http.send()
 	    }
+	    
+	    const sendOnEnter = event => event.key === "Enter" && sendMessage()
+
 	  </script>
 	</head>
 	<body>
@@ -46,9 +49,9 @@
 	  <ul id="list">
 	  </ul>
 
-	  <form>
-	    <input id="text" name="text" value="Type sample message here">
-	    <button type="button" onClick="sendMessage()">Send</button>
-	  </form>
+    <input id="text" name="text" placeholder="Type sample message here"
+      onKeyDown="sendOnEnter(event)"
+    >
+    <button type="button" onClick="sendMessage()">Send</button>
 	</body>
 </html>
