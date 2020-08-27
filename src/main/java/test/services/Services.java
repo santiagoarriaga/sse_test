@@ -55,7 +55,8 @@ public class Services
     return new KafkaMessageSource( properties, topic );
   }
 
-  @Bean Flux<IncomingMessage> flow( @Autowired KafkaMessageSource source )  
+  @Bean
+  Flux<IncomingMessage> flow( @Autowired KafkaMessageSource source )  
   {
     Flux<IncomingMessage> shared = source.run().share();
 
