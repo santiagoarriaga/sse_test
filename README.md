@@ -3,7 +3,7 @@ Spring Boot Server-Sent-Events ( SSE ) service with reactive Kafka producer and 
 
 ## Install
 
-- Install Java 5
+- Install Java 10
 - Clone and cd into this repository
 - Run:
 
