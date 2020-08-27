@@ -28,7 +28,7 @@ public class Services
   @Bean
   public KafkaMessageProducer kafkaMessageProducer()
   {
-    Map<String, Object> PRODUCER_PROPERTIES = Collections.unmodifiableMap
+    var properties = Collections.unmodifiableMap
     (
       new HashMap<String, Object>()
       {{
@@ -37,13 +37,13 @@ public class Services
       }}
     );
 
-    return new KafkaMessageProducer( PRODUCER_PROPERTIES, topic );
+    return new KafkaMessageProducer( properties, topic );
   }
 
   @Bean
   public KafkaMessageSource kafkaMessageSource()
   {
-    var CONSUMER_PROPERTIES = Collections.unmodifiableMap
+    var properties = Collections.unmodifiableMap
     (
       new HashMap<String, Object>()
       {{
@@ -52,7 +52,7 @@ public class Services
       }}
     );
 
-    return new KafkaMessageSource( CONSUMER_PROPERTIES, topic );
+    return new KafkaMessageSource( properties, topic );
   }
 
   @Bean Flux<IncomingMessage> flow( @Autowired KafkaMessageSource source )  
