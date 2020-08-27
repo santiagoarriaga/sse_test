@@ -1,5 +1,9 @@
 package test.services;
 
+import java.util.*;
+
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,18 +17,36 @@ import test.data.IncomingMessage;
 public class Services
 {
 
+  Map<String, Object> CONSUMER_PROPERTIES = Collections.unmodifiableMap
+  (
+    new HashMap<String, Object>()
+    {{
+      put( ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, Config.BOOTSTRAP_SERVERS );
+      put( ConsumerConfig.CLIENT_ID_CONFIG        , "sample_receiver" );
+    }}
+  );
+
+  Map<String, Object> PRODUCER_PROPERTIES = Collections.unmodifiableMap
+  (
+    new HashMap<String, Object>()
+    {{
+      put( ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, Config.BOOTSTRAP_SERVERS );
+      put( ProducerConfig.CLIENT_ID_CONFIG        , "sample_sender"   );
+    }}
+  );
+
   private Flux<IncomingMessage> _liveFlux;
 
   @Bean
   public KafkaMessageProducer kafkaMessageProducer()
   {
-    return new KafkaMessageProducer( Config.PRODUCER_PROPERTIES, Config.TOPIC );
+    return new KafkaMessageProducer( PRODUCER_PROPERTIES, Config.TOPIC );
   }
 
   @Bean
   public KafkaMessageSource kafkaMessageSource()
   {
-    return new KafkaMessageSource( Config.CONSUMER_PROPERTIES, Config.TOPIC );
+    return new KafkaMessageSource( CONSUMER_PROPERTIES, Config.TOPIC );
   }
 
   @Bean Flux<IncomingMessage> flow( @Autowired KafkaMessageSource source )  
