@@ -9,7 +9,7 @@ public interface Config
 {
 
   String BOOTSTRAP_SERVERS = "localhost:9092";
-  String TOPIC = "thl-events";
+  String TOPIC = "test-events";
 
   Map<String, Object> CONSUMER_PROPERTIES = Collections.unmodifiableMap
   (
