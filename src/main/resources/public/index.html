@@ -1,12 +1,12 @@
 <!doctype html>
 
 <html lang="en">
-	<head>
-	  <meta charset="utf-8">
-	
-	  <title>Test</title>
-	  
-	  <script>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Test</title>
+
+    <script>
 	    const source = new EventSource( "/messages" )
 
 	    source.onmessage = ({ data }) =>
@@ -42,16 +42,15 @@
 	    const sendOnEnter = event => event.key === "Enter" && sendMessage()
 
 	  </script>
-	</head>
-	<body>
-	  Hello World
+  </head>
+  <body>
+    Hello World
 
-	  <ul id="list">
-	  </ul>
+    <ul id="list">
+    </ul>
 
     <input id="text" name="text" placeholder="Type sample message here"
-      onKeyDown="sendOnEnter(event)"
-    >
+      onKeyDown="sendOnEnter(event)">
     <button type="button" onClick="sendMessage()">Send</button>
-	</body>
+  </body>
 </html>
